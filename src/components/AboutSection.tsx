@@ -7,7 +7,7 @@ const pillars = [
     icon: Code,
     title: "Practical Web Development",
     description:
-      "Building real personal web applications with React, Next.js, TypeScript, Tailwind CSS, and Supabase.",
+      "Building and deploying real web applications with Next.js, TypeScript, PostgreSQL, and Supabase.",
   },
   {
     icon: GitBranch,

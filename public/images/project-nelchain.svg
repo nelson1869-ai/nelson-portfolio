@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0F172A"/>
+  <rect x="32" y="32" width="736" height="436" rx="16" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  <g font-family="ui-monospace, monospace" font-size="16" fill="#94A3B8">
+    <rect x="80" y="200" width="150" height="100" rx="12" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <text x="155" y="245" text-anchor="middle" fill="#38BDF8">Block #1</text>
+    <text x="155" y="270" text-anchor="middle">PoS + VRF</text>
+    <rect x="325" y="200" width="150" height="100" rx="12" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <text x="400" y="245" text-anchor="middle" fill="#38BDF8">Block #2</text>
+    <text x="400" y="270" text-anchor="middle">signed txs</text>
+    <rect x="570" y="200" width="150" height="100" rx="12" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <text x="645" y="245" text-anchor="middle" fill="#38BDF8">Block #3</text>
+    <text x="645" y="270" text-anchor="middle">testnet</text>
+    <path d="M230 250H325M475 250H570" stroke="#38BDF8" stroke-width="2"/>
+  </g>
+  <text x="400" y="120" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="36" font-weight="700">nel-chain</text>
+</svg>

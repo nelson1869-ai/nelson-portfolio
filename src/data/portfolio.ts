@@ -65,11 +65,11 @@ export const navLinks: NavLink[] = [
 ];
 
 export const personalInfo: PersonalInfo = {
-  name: "Nelson Fernandez",
-  title: "Aspiring Junior Full-Stack / Web Developer",
-  heroTitle: "Junior Full-Stack / Web Developer",
+  name: "Nelson E. Fernandez",
+  title: "Junior Full-Stack Web Developer",
+  heroTitle: "Junior Full-Stack Web Developer",
   heroTagline:
-    "Building modern web applications and continuously improving my development skills.",
+    "I build and ship full-stack web apps with Next.js, TypeScript, and PostgreSQL — from a Proof-of-Stake blockchain to a lending system.",
   location: "Bacolod City, Negros Occidental, Philippines",
   email: "nf1869personal@gmail.com",
   phone: "09678512837",
@@ -83,6 +83,27 @@ export const personalInfo: PersonalInfo = {
     "My goal is to grow as a software developer and build practical, reliable, and user-friendly applications.",
   ],
 };
+
+export interface HeroStat {
+  value: string;
+  label: string;
+}
+
+// Real numbers from my projects (update when they change)
+export const heroStats: HeroStat[] = [
+  { value: "4", label: "live web apps" },
+  { value: "400+", label: "automated tests" },
+  { value: "500+", label: "Git commits" },
+];
+
+export const heroStack: string[] = [
+  "Next.js",
+  "TypeScript",
+  "React",
+  "PostgreSQL",
+  "Tailwind CSS",
+  "Node.js",
+];
 
 export const skills: SkillItem[] = [
   {
@@ -161,6 +182,21 @@ export const skills: SkillItem[] = [
 
 export const projects: ProjectItem[] = [
   {
+    id: "nel-chain",
+    title: "nel-chain",
+    subtitle: "Proof-of-Stake Learning Blockchain",
+    description:
+      "A blockchain built from scratch: Proof-of-Stake with VRF validator selection (no mining), a multi-node testnet, a block explorer, and a wallet app.",
+    liveUrl: "https://nel-chain.vercel.app/",
+    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Vitest"],
+    image: "/images/project-nelchain.svg",
+    imageAlt: "Preview illustration of the nel-chain blockchain explorer",
+    highlights: [
+      "400+ automated tests and a written threat model",
+      "Shipped in 80+ small phases, including a planned hard fork on the live testnet",
+    ],
+  },
+  {
     id: "aetern",
     title: "AETERN",
     subtitle: "Civic Tech & Social Platform",
@@ -181,11 +217,11 @@ export const projects: ProjectItem[] = [
     subtitle: "Financial Management Web App",
     description: "An admin-focused lending application built as a personal project.",
     liveUrl: "https://small-lending.vercel.app/login",
-    technologies: ["Next.js", "TypeScript", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM"],
     image: "/images/project-lending.svg",
     imageAlt: "Preview illustration of Small Lending System admin dashboard",
     highlights: [
-      "Authenticated administrative workflow powered by Supabase and Next.js",
+      "Authenticated admin workflow built with Next.js, PostgreSQL, and Drizzle ORM",
       "Type-safe application structure using TypeScript for managing lending records",
     ],
   },
@@ -235,7 +271,7 @@ export const experiences: ExperienceItem[] = [
 export const education: EducationItem = {
   institution: "Carlos Hilado Memorial State University",
   abbreviation: "CHMSU",
-  degree: "Bachelor of Science in Information Technology (BSIT)",
+  degree: "Bachelor of Science in Industrial Technology (BSIT)",
   major: "Major in Computer Technology (ComTech)",
   graduationDate: "July 6, 2020",
   achievements: ["Dean's Lister — First Year, First Semester"],

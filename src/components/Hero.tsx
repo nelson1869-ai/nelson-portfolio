@@ -1,149 +1,136 @@
-import {
-  ArrowRight,
-  FileDown,
-  Layers,
-  Mail,
-  MapPin,
-  Terminal,
-} from "lucide-react";
-import { personalInfo } from "@/data/portfolio";
+import { ArrowRight, ArrowUpRight, FileDown, Mail, MapPin } from "lucide-react";
+import { heroStack, heroStats, personalInfo, projects } from "@/data/portfolio";
 import { GithubIcon } from "./GithubIcon";
 
+// One shared style for every bento tile, so all boxes look the same.
+const tile =
+  "rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6";
+
 export function Hero() {
+  // The first project in the data is the featured one (nel-chain).
+  const featured = projects[0];
+
   return (
     <section
       id="top"
       aria-label="Introduction"
-      className="relative overflow-hidden border-b border-[var(--border-subtle)] py-16 sm:py-24 lg:py-28"
+      className="border-b border-[var(--border-subtle)] py-12 sm:py-16"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          {/* Primary Hero Copy */}
-          <div className="animate-fade-in-up lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
+      {/* Bento grid: 1 column on phones, 4 columns on large screens */}
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+        {/* 1. Intro tile (big: 2 columns x 2 rows) */}
+        <div className={`${tile} animate-fade-in-up flex flex-col justify-between lg:col-span-2 lg:row-span-2 sm:p-8`}>
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--text-secondary)]">
               <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              <span>Open to Junior Full-Stack, Frontend &amp; Entry-Level Web Roles</span>
-            </div>
+              Open to junior full-stack &amp; web roles
+            </p>
 
-            <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
-              Hi, I&apos;m {personalInfo.name}.
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl">
+              {personalInfo.name}
             </h1>
-
-            <p className="mt-3 text-xl font-semibold text-[var(--accent-text)] sm:text-2xl">
+            <p className="mt-2 text-lg font-semibold text-[var(--accent-text)] sm:text-xl">
               {personalInfo.heroTitle}
             </p>
-
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            <p className="mt-4 max-w-xl leading-relaxed text-[var(--text-secondary)]">
               {personalInfo.heroTagline}
             </p>
-
-            <div className="mt-5 flex flex-wrap items-center gap-y-2 gap-x-5 text-sm text-[var(--text-muted)]">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4 text-[var(--accent-text)]" aria-hidden="true" />
-                {personalInfo.location}
-              </span>
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-text)]"
-              >
-                <GithubIcon className="h-4 w-4" />
-                github.com/{personalInfo.githubUsername}
-              </a>
-            </div>
-
-            {/* Required CTA Buttons */}
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent-primary)] px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-[var(--accent-hover)] dark:text-slate-950"
-              >
-                <span>View My Projects</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-surface)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-elevated)]"
-              >
-                <Mail className="h-4 w-4 text-[var(--accent-text)]" aria-hidden="true" />
-                <span>Contact Me</span>
-              </a>
-
-              <a
-                href="#resume"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-4 py-3 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
-              >
-                <FileDown className="h-4 w-4 text-[var(--accent-text)]" aria-hidden="true" />
-                <span>Download My Resume</span>
-              </a>
-            </div>
           </div>
 
-          {/* Right Column: Developer Snapshot Card */}
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4">
-                <div className="flex items-center gap-2">
-                  <Terminal className="h-4 w-4 text-[var(--accent-text)]" aria-hidden="true" />
-                  <span className="font-mono text-xs font-semibold text-[var(--text-primary)]">
-                    developer-profile.ts
-                  </span>
-                </div>
-                <span className="rounded-md bg-[var(--accent-soft)] px-2 py-0.5 font-mono text-[11px] font-medium text-[var(--accent-text)]">
-                  BSIT • ComTech
-                </span>
-              </div>
-
-              <dl className="mt-5 space-y-4 text-sm">
-                <div>
-                  <dt className="font-mono text-xs text-[var(--text-muted)] uppercase">
-                    Role Focus
-                  </dt>
-                  <dd className="mt-1 font-medium text-[var(--text-primary)]">
-                    {personalInfo.title}
-                  </dd>
-                </div>
-
-                <div>
-                  <dt className="font-mono text-xs text-[var(--text-muted)] uppercase">
-                    Current Stack Focus
-                  </dt>
-                  <dd className="mt-1.5 flex flex-wrap gap-1.5">
-                    {["Next.js", "TypeScript", "React", "Tailwind CSS", "Supabase", "JavaScript"].map(
-                      (tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-2.5 py-1 font-mono text-xs text-[var(--text-secondary)]"
-                        >
-                          {tech}
-                        </span>
-                      )
-                    )}
-                  </dd>
-                </div>
-
-                <div>
-                  <dt className="font-mono text-xs text-[var(--text-muted)] uppercase">
-                    Additional Exploration
-                  </dt>
-                  <dd className="mt-1 text-[var(--text-secondary)]">
-                    Python, Git &amp; GitHub workflows, n8n automation, and introductory AI / RAG concepts.
-                  </dd>
-                </div>
-
-                <div className="pt-2">
-                  <div className="flex items-center gap-2.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-elevated)] p-3.5">
-                    <Layers className="h-5 w-5 shrink-0 text-[var(--accent-text)]" aria-hidden="true" />
-                    <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
-                      Committed to writing clean, maintainable code and growing within collaborative engineering teams.
-                    </p>
-                  </div>
-                </div>
-              </dl>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent-primary)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-hover)] dark:text-slate-950"
+            >
+              View Projects
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a
+              href={personalInfo.resumePath}
+              download={personalInfo.resumeFileName}
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-elevated)]"
+            >
+              <FileDown className="h-4 w-4 text-[var(--accent-text)]" aria-hidden="true" />
+              Resume (PDF)
+            </a>
           </div>
+        </div>
+
+        {/* 2. Featured project tile (2 columns wide) */}
+        <a
+          href={featured.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${tile} group transition-colors hover:border-[var(--accent-primary)] lg:col-span-2`}
+        >
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-xs uppercase text-[var(--text-muted)]">
+              Featured project
+            </span>
+            <ArrowUpRight
+              className="h-5 w-5 text-[var(--text-muted)] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--accent-text)]"
+              aria-hidden="true"
+            />
+          </div>
+          <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
+            {featured.title}
+          </h2>
+          <p className="text-sm font-medium text-[var(--accent-text)]">{featured.subtitle}</p>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+            {featured.description}
+          </p>
+        </a>
+
+        {/* 3. Stat tiles: one small tile per number */}
+        <div className="grid grid-cols-3 gap-4 lg:col-span-2">
+          {heroStats.map((stat) => (
+            <div key={stat.label} className={`${tile} text-center`}>
+              <p className="text-3xl font-extrabold text-[var(--text-primary)]">{stat.value}</p>
+              <p className="mt-1 text-xs text-[var(--text-muted)]">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* 4. Tech stack tile (2 columns wide) */}
+        <div className={`${tile} lg:col-span-2`}>
+          <p className="font-mono text-xs uppercase text-[var(--text-muted)]">Main stack</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {heroStack.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-2.5 py-1 font-mono text-xs text-[var(--text-secondary)]"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 5. Location tile */}
+        <div className={tile}>
+          <MapPin className="h-5 w-5 text-[var(--accent-text)]" aria-hidden="true" />
+          <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">Bacolod City</p>
+          <p className="text-xs text-[var(--text-muted)]">Negros Occidental, Philippines</p>
+        </div>
+
+        {/* 6. Contact tile: GitHub + email */}
+        <div className={`${tile} flex flex-col justify-center gap-3`}>
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-text)]"
+          >
+            <GithubIcon className="h-4 w-4" />
+            GitHub
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-text)]"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            Contact me
+          </a>
         </div>
       </div>
     </section>

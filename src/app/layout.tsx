@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [
     "Nelson Fernandez",
+    "Nelson E. Fernandez",
     "Junior Full-Stack Developer",
     "Junior Frontend Developer",
     "Entry-Level Web Developer",
