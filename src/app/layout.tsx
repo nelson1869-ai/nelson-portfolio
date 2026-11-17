@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { personalInfo } from "@/data/portfolio";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const siteTitle = `${personalInfo.name} | ${personalInfo.heroTitle}`;
 const siteDescription =
-  "Personal developer portfolio of Nelson Fernandez, an Aspiring Junior Full-Stack / Web Developer based in Bacolod City, Philippines. Building web applications with Next.js, TypeScript, React, Tailwind CSS, and Supabase.";
+  "Nelson E. Fernandez is a junior full-stack web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://nelson-portfolio.vercel.app"
-  ),
+  metadataBase: new URL(siteUrl),
+  // Canonical URL: tells Google this is the one "real" address of the page.
+  alternates: { canonical: "/" },
   title: {
     default: siteTitle,
     template: `%s | ${personalInfo.name}`,
@@ -30,7 +31,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteTitle,
     description: siteDescription,
-    type: "website",
+    type: "profile",
+    url: "/",
     locale: "en_PH",
     siteName: `${personalInfo.name} Portfolio`,
   },

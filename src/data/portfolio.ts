@@ -149,6 +149,12 @@ export const skills: SkillItem[] = [
     description: "App Router architecture, server and client components, routing, and SEO metadata.",
   },
   {
+    name: "Technical SEO",
+    level: "Applied on this site",
+    category: "Full-Stack & Backend",
+    description: "Next.js Metadata API, canonical URLs, sitemap.xml, robots.txt, Open Graph images, and JSON-LD structured data.",
+  },
+  {
     name: "Supabase",
     level: "Project experience",
     category: "Full-Stack & Backend",
