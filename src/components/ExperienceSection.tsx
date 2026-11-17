@@ -1,9 +1,9 @@
-import { education, experience } from "@/data/portfolio";
+import { experience } from "@/data/portfolio";
 import { Section } from "./Section";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" eyebrow="Experience" title="Experience & education">
+    <Section id="experience" eyebrow="Experience" title="Work experience">
       {/* Timeline: a line on the left with a dot for each entry */}
       <ol className="relative space-y-10 border-l border-(--border-strong) pl-6">
         {experience.map((item) => (
@@ -27,25 +27,6 @@ export function ExperienceSection() {
           </li>
         ))}
       </ol>
-
-      {/* Education (kept as #education so old links still work) */}
-      <div
-        id="education"
-        className="mt-12 rounded-lg border border-(--border-subtle) bg-(--bg-surface) p-5 sm:p-6"
-      >
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 className="text-base font-semibold text-(--text-primary)">{education.degree}</h3>
-          <p className="font-mono text-xs text-(--text-muted)">Graduated {education.graduated}</p>
-        </div>
-        <p className="mt-1 text-sm text-(--text-secondary)">
-          {education.major} · {education.school}
-        </p>
-        <ul className="mt-3 text-sm text-(--text-muted)">
-          {education.honors.map((honor) => (
-            <li key={honor}>{honor}</li>
-          ))}
-        </ul>
-      </div>
     </Section>
   );
 }

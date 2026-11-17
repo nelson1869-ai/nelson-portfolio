@@ -45,6 +45,24 @@ export function ProjectsSection() {
                   ))}
                 </ul>
 
+                {/* Native <details>: opens and closes without any JavaScript */}
+                <details className="group mt-4 border-t border-(--border-subtle) pt-3">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-1 text-sm font-medium text-(--text-primary) [&::-webkit-details-marker]:hidden">
+                    How it&apos;s built
+                    <span
+                      className="text-(--text-muted) transition-transform group-open:rotate-45"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-(--text-secondary) marker:text-(--border-strong)">
+                    {project.howItsBuilt.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </details>
+
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
                   {project.technologies.map((tech) => (
                     <li

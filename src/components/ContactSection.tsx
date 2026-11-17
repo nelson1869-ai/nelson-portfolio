@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileDown, Mail } from "lucide-react";
+import { ArrowUpRight, FileDown, Mail, Phone } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import { CopyButton } from "./CopyButton";
 import { GithubIcon } from "./GithubIcon";
@@ -38,20 +38,32 @@ export function ContactSection() {
         </a>
       </div>
 
-      <ul className="mt-10 grid gap-4 border-t border-(--border-subtle) pt-6 text-sm sm:grid-cols-2">
+      <ul className="mt-10 grid gap-6 border-t border-(--border-subtle) pt-6 text-sm sm:grid-cols-3">
         <li>
           <p className="font-mono text-xs text-(--text-muted) uppercase">GitHub</p>
           <a
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-flex items-center gap-1.5 text-(--text-primary) hover:underline"
+            className="mt-1 inline-flex items-center gap-1.5 py-1 text-(--text-primary) hover:underline"
           >
             <GithubIcon className="h-4 w-4" />
             github.com/{personalInfo.githubUsername}
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="sr-only">(opens in a new tab)</span>
           </a>
+        </li>
+        <li>
+          <p className="font-mono text-xs text-(--text-muted) uppercase">Phone</p>
+          <div className="mt-1 flex flex-wrap items-center gap-3">
+            <a
+              href={personalInfo.telHref}
+              className="inline-flex items-center gap-1.5 py-1 text-(--text-primary) hover:underline"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              {personalInfo.phone}
+            </a>
+          </div>
         </li>
         <li>
           <p className="font-mono text-xs text-(--text-muted) uppercase">Location</p>

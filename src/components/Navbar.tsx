@@ -9,24 +9,40 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
 
-  // Highlight the nav link of the section that is in the middle of the screen.
+  // Highlight the nav link of the section the reader is looking at.
   useEffect(() => {
     const sections = navLinks
       .map((link) => document.querySelector<HTMLElement>(link.href))
       .filter((el): el is HTMLElement => el !== null);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveHref(`#${entry.target.id}`);
+    const updateActive = () => {
+      // The last section whose top has passed 40% of the screen height.
+      let current = "";
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+          current = `#${section.id}`;
         }
-      },
-      // A thin band across the middle of the viewport.
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
+      }
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      // At the very bottom, short sections (like Education) can never reach 40%.
+      // If the reader clicked a link to a section that is on screen, trust that link.
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      const clicked = sections.find((section) => `#${section.id}` === window.location.hash);
+      if (atBottom && clicked && clicked.getBoundingClientRect().top < window.innerHeight) {
+        current = window.location.hash;
+      }
+
+      setActiveHref(current);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("hashchange", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("hashchange", updateActive);
+    };
   }, []);
 
   // Close the mobile menu with the Escape key.
@@ -52,7 +68,7 @@ export function Navbar() {
         </a>
 
         {/* Desktop links */}
-        <nav aria-label="Primary" className="hidden md:block">
+        <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -90,7 +106,7 @@ export function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border-subtle) text-(--text-secondary) md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border-subtle) text-(--text-secondary) lg:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
@@ -102,7 +118,7 @@ export function Navbar() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="border-t border-(--border-subtle) bg-(--bg-primary) px-4 py-3 md:hidden"
+          className="border-t border-(--border-subtle) bg-(--bg-primary) px-4 py-3 lg:hidden"
         >
           <ul className="flex flex-col">
             {navLinks.map((link) => (

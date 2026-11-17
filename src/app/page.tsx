@@ -4,6 +4,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { SkillsSection } from "@/components/SkillsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import { EducationSection } from "@/components/EducationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { education, personalInfo, skillGroups } from "@/data/portfolio";
@@ -46,6 +47,7 @@ export default function HomePage() {
         <SkillsSection />
         <AboutSection />
         <ExperienceSection />
+        <EducationSection />
         <ContactSection />
       </main>
       <Footer />

@@ -14,6 +14,8 @@ export interface PersonalInfo {
   interests: string[];
   location: string;
   email: string;
+  phone: string; // shown as written; telHref is the dialable version
+  telHref: string;
   github: string;
   githubUsername: string;
   resumePath: string;
@@ -33,6 +35,7 @@ export interface Project {
   status: string;
   description: string;
   highlights: string[];
+  howItsBuilt: string[];
   technologies: string[];
   liveUrl: string;
   githubUrl?: string; // left out when the repository is private
@@ -40,9 +43,17 @@ export interface Project {
   imageAlt: string;
 }
 
+// Honest proficiency levels (shown with a legend on the page).
+export type SkillLevel = "Project experience" | "Learning & applying" | "Basic";
+
+export interface Skill {
+  name: string;
+  level: SkillLevel;
+}
+
 export interface SkillGroup {
   name: string;
-  skills: string[];
+  skills: Skill[];
 }
 
 export interface TimelineItem {
@@ -65,13 +76,14 @@ export const navLinks: NavLink[] = [
   { label: "Skills", href: "#skills" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const personalInfo: PersonalInfo = {
   name: "Nelson E. Fernandez",
   role: "Entry-Level Web Developer",
-  goal: "Aspiring Junior Full-Stack Developer",
+  goal: "Next.js & TypeScript",
   intro:
     "I build and deploy web applications with Next.js, TypeScript, and PostgreSQL. I'm looking for my first developer role, where I can keep learning and contribute to a team.",
   interests: [
@@ -82,12 +94,14 @@ export const personalInfo: PersonalInfo = {
   ],
   location: "Bacolod City, Negros Occidental, Philippines",
   email: "nf1869personal@gmail.com",
+  phone: "+63 967 851 2837",
+  telHref: "tel:+639678512837",
   github: "https://github.com/nelson1869-ai",
   githubUsername: "nelson1869-ai",
   resumePath: "/files/Nelson-Fernandez-Resume.pdf",
   resumeFileName: "Nelson-Fernandez-Resume.pdf",
   about: [
-    "I'm a BS Industrial Technology graduate, major in Computer Technology, from Carlos Hilado Memorial State University. Before moving into software, I did IT support work: troubleshooting desktops and printers, assembling and repairing computers, and helping install CCTV.",
+    "I'm a BS Industrial Technology graduate, major in Computer Technology, from Carlos Hilado Memorial State University. My first hands-on IT work was an OJT in IT support: troubleshooting desktops and printers, assembling and repairing computers, and helping install CCTV.",
     "I work full-time as a warehouse checker, and I use my own time to learn web development by building real projects. In 2026 I built and deployed four web apps, including a Proof-of-Stake learning blockchain and a lending system. I learn from official documentation, write tests, and improve each project in small steps.",
     "My goal is to join a team as an entry-level or junior developer, grow into a full-stack role, and build software that is reliable and easy to use.",
   ],
@@ -105,12 +119,17 @@ export const projects: Project[] = [
     id: "nel-chain",
     title: "nel-chain",
     subtitle: "Proof-of-Stake learning blockchain",
-    status: "Live testnet · learning project",
+    status: "Live · learning project, coins have no real value",
     description:
-      "A blockchain built from scratch to learn how one works: Proof-of-Stake with VRF validator selection (no mining), a multi-node test network, a block explorer, and a wallet app.",
+      "A blockchain I built from scratch to understand how one works. Validators are chosen by Proof-of-Stake with a VRF instead of mining, and the web app includes a block explorer, a wallet, and lessons.",
     highlights: [
       "400+ automated tests and a written threat model",
       "Built in 80+ small phases, including a planned hard fork on the running testnet",
+    ],
+    howItsBuilt: [
+      "Nodes are Node.js processes that share blocks and votes over WebSockets; a local network runs 4 nodes.",
+      "Signatures and hashes use the audited @noble cryptography libraries; every signature includes a chain ID so transactions cannot be replayed on another network.",
+      "Three network settings: a fast local lab, a real-time testnet, and a mainnet that is only a draft.",
     ],
     technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Vitest"],
     liveUrl: "https://nel-chain.vercel.app/",
@@ -121,12 +140,17 @@ export const projects: Project[] = [
     id: "aetern",
     title: "AETERN",
     subtitle: "Privacy-first social network prototype",
-    status: "Live prototype · public test",
+    status: "Live · early prototype, not yet secure for real use",
     description:
-      "A local-first social network where every post is signed with the user's own key and data stays on the user's devices. It has identity recovery, feeds, groups, messages, and a WebSocket relay.",
+      "A local-first social network experiment: each post is signed with the user's own key and data is kept on the user's device. It has identity recovery, a feed, groups, and messages.",
     highlights: [
       "Architecture decisions and known security limits are documented in the repo",
       "End-to-end tests with Playwright",
+    ],
+    howItsBuilt: [
+      "The app is a static Next.js export hosted on Cloudflare Pages; devices connect to a self-hosted Node.js WebSocket relay.",
+      "Identity is a key pair restored from a 24-word recovery phrase (BIP39), so there is no password or server account.",
+      "The README states plainly that the prototype is not yet decentralized, private, or secure.",
     ],
     technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Playwright"],
     liveUrl: "https://aetern.pages.dev/",
@@ -140,10 +164,16 @@ export const projects: Project[] = [
     subtitle: "Lending management web app",
     status: "Live · login required",
     description:
-      "An app for tracking borrowers, loans, and payments, with separate areas for the admin and for borrowers.",
+      "A web app for a small lender to track borrowers, loans, and payments, with separate areas for the admin and for borrowers.",
     highlights: [
       "Google sign-in, borrower approval, and role-based access",
       "Activity history and search; input validated with Zod",
+    ],
+    howItsBuilt: [
+      "Next.js App Router talks to a PostgreSQL database (Neon) through Drizzle ORM.",
+      "Zod checks every form input on the server before it reaches the database.",
+      "Users sign in with Google; new borrowers wait on a holding page until the admin approves them.",
+      "A GitHub Actions job backs up the production database every day.",
     ],
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Zod"],
     liveUrl: "https://small-lending.vercel.app/login",
@@ -154,12 +184,17 @@ export const projects: Project[] = [
     id: "jean-shop",
     title: "Jean Shop",
     subtitle: "Tailoring shop website with admin",
-    status: "Live · in development",
+    status: "Live preview · waiting for the shop's real details",
     description:
       "A website for a tailoring shop in Bacolod City with service pages and an inquiry form, plus an owner-only admin panel.",
     highlights: [
       "Admin tools for customers, measurements, orders, payments, and expenses",
       "Supabase for the database and owner sign-in",
+    ],
+    howItsBuilt: [
+      "Next.js with Supabase (PostgreSQL + Auth) through @supabase/ssr; the admin pages require the owner's login.",
+      "Form input is validated with Zod on the server.",
+      "Hidden from search engines (noindex) until the owner's real business details are added.",
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://jean-shop.vercel.app/",
@@ -168,23 +203,58 @@ export const projects: Project[] = [
   },
 ];
 
-// Only tools used in the projects above.
+// Levels: "Project experience" = used in a shipped project; "Learning & applying" =
+// used, still learning; "Basic" = foundations only. Keep these honest.
 export const skillGroups: SkillGroup[] = [
   {
     name: "Frontend",
-    skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Technical SEO"],
+    skills: [
+      { name: "HTML", level: "Basic" },
+      { name: "CSS", level: "Basic" },
+      { name: "JavaScript", level: "Basic" },
+      { name: "TypeScript", level: "Learning & applying" },
+      { name: "React", level: "Basic" },
+      { name: "Next.js", level: "Learning & applying" },
+      { name: "Tailwind CSS", level: "Project experience" },
+      { name: "Technical SEO", level: "Project experience" },
+    ],
   },
   {
     name: "Backend",
-    skills: ["Node.js", "REST API development", "Authentication", "Zod validation", "WebSocket"],
+    skills: [
+      { name: "Node.js", level: "Learning & applying" },
+      { name: "API development", level: "Learning & applying" },
+      { name: "Authentication", level: "Learning & applying" },
+      { name: "Zod validation", level: "Project experience" },
+      { name: "WebSocket", level: "Learning & applying" },
+    ],
   },
   {
     name: "Database",
-    skills: ["PostgreSQL", "Supabase", "Drizzle ORM"],
+    skills: [
+      { name: "PostgreSQL", level: "Learning & applying" },
+      { name: "Supabase", level: "Project experience" },
+      { name: "Drizzle ORM", level: "Project experience" },
+    ],
   },
   {
     name: "Tools & Testing",
-    skills: ["Git", "GitHub", "pnpm", "VS Code", "Vitest", "Playwright", "Vercel", "Cloudflare Pages"],
+    skills: [
+      { name: "Git & GitHub", level: "Project experience" },
+      { name: "pnpm", level: "Project experience" },
+      { name: "VS Code", level: "Project experience" },
+      { name: "Vitest", level: "Learning & applying" },
+      { name: "Playwright", level: "Learning & applying" },
+      { name: "Vercel & Cloudflare Pages", level: "Project experience" },
+    ],
+  },
+  {
+    name: "Also exploring",
+    skills: [
+      { name: "Python", level: "Basic" },
+      { name: "n8n workflow automation", level: "Basic" },
+      { name: "AI & RAG concepts", level: "Basic" },
+    ],
   },
 ];
 

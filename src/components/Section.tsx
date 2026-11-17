@@ -35,7 +35,8 @@ export function Section({ id, eyebrow, title, description, children }: SectionPr
           ) : null}
         </header>
 
-        <div className="lg:col-span-9">{children}</div>
+        {/* "reveal" fades the content in as it scrolls into view (CSS only, see globals.css) */}
+        <div className="reveal lg:col-span-9">{children}</div>
       </div>
     </section>
   );

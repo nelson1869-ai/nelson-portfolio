@@ -15,7 +15,7 @@ const jetbrains = JetBrains_Mono({
 
 const siteTitle = `${personalInfo.name} | ${personalInfo.role}`;
 const siteDescription =
-  "Nelson E. Fernandez is an entry-level web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
+  "Nelson E. Fernandez is an entry-level web developer in Bacolod City, Philippines, focused on Next.js and TypeScript. See his deployed projects, skills, and resume.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
