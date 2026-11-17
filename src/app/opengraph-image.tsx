@@ -21,7 +21,7 @@ export default function Image() {
           color: "#f8fafc",
         }}
       >
-        <div style={{ fontSize: 28, color: "#34d399" }}>● Open to junior full-stack & web roles</div>
+        <div style={{ fontSize: 28, color: "#34d399" }}>● Open to entry-level & junior web roles</div>
         <div style={{ fontSize: 84, fontWeight: 800, marginTop: 24 }}>{personalInfo.name}</div>
         <div style={{ fontSize: 44, color: "#38bdf8", marginTop: 8 }}>{personalInfo.heroTitle}</div>
         <div style={{ fontSize: 30, color: "#94a3b8", marginTop: 40 }}>

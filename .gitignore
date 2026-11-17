@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# personal resume source files (PDF in public/files is the shared copy)
+*.docx

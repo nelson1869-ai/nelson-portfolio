@@ -5,7 +5,7 @@ import "./globals.css";
 
 const siteTitle = `${personalInfo.name} | ${personalInfo.heroTitle}`;
 const siteDescription =
-  "Nelson E. Fernandez is a junior full-stack web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
+  "Nelson E. Fernandez is an entry-level full-stack web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   keywords: [
     "Nelson Fernandez",
     "Nelson E. Fernandez",
+    "Entry-Level Full-Stack Developer",
     "Junior Full-Stack Developer",
     "Junior Frontend Developer",
     "Entry-Level Web Developer",

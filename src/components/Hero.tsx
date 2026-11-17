@@ -23,7 +23,7 @@ export function Hero() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--text-secondary)]">
               <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              Open to junior full-stack &amp; web roles
+              Open to entry-level &amp; junior web roles
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl">

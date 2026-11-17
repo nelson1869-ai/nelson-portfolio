@@ -66,8 +66,8 @@ export const navLinks: NavLink[] = [
 
 export const personalInfo: PersonalInfo = {
   name: "Nelson E. Fernandez",
-  title: "Junior Full-Stack Web Developer",
-  heroTitle: "Junior Full-Stack Web Developer",
+  title: "Entry-Level Full-Stack Web Developer",
+  heroTitle: "Entry-Level Full-Stack Web Developer",
   heroTagline:
     "I build and ship full-stack web apps with Next.js, TypeScript, and PostgreSQL — from a Proof-of-Stake blockchain to a lending system.",
   location: "Bacolod City, Negros Occidental, Philippines",
