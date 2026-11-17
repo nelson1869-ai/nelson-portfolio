@@ -209,7 +209,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "HTML", level: "Project experience" },
       { name: "CSS", level: "Project experience" },
-      { name: "JavaScript", level: "Learning & applying" },
+      { name: "JavaScript", level: "Project experience" },
       { name: "TypeScript", level: "Learning & applying" },
       { name: "React", level: "Project experience" },
       { name: "Next.js", level: "Learning & applying" },
