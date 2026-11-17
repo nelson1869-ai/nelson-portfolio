@@ -207,11 +207,11 @@ export const skillGroups: SkillGroup[] = [
   {
     name: "Frontend",
     skills: [
-      { name: "HTML", level: "Basic" },
-      { name: "CSS", level: "Basic" },
-      { name: "JavaScript", level: "Basic" },
+      { name: "HTML", level: "Project experience" },
+      { name: "CSS", level: "Project experience" },
+      { name: "JavaScript", level: "Learning & applying" },
       { name: "TypeScript", level: "Learning & applying" },
-      { name: "React", level: "Basic" },
+      { name: "React", level: "Project experience" },
       { name: "Next.js", level: "Learning & applying" },
       { name: "Tailwind CSS", level: "Project experience" },
       { name: "Technical SEO", level: "Project experience" },
@@ -230,7 +230,7 @@ export const skillGroups: SkillGroup[] = [
   {
     name: "Database",
     skills: [
-      { name: "PostgreSQL", level: "Learning & applying" },
+      { name: "PostgreSQL", level: "Project experience" },
       { name: "Supabase", level: "Project experience" },
       { name: "Drizzle ORM", level: "Project experience" },
     ],
