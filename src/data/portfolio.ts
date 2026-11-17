@@ -1,271 +1,219 @@
-export interface PersonalInfo {
-  name: string;
-  title: string;
-  heroTitle: string;
-  heroTagline: string;
-  location: string;
-  email: string;
-  phone: string;
-  github: string;
-  githubUsername: string;
-  resumePath: string;
-  resumeFileName: string;
-  introduction: string[];
-}
-
-export interface SkillItem {
-  name: string;
-  level: string;
-  category: "Frontend & Core" | "Full-Stack & Backend" | "Tools & Emerging Tech";
-  description: string;
-}
-
-export interface ProjectItem {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  liveUrl: string;
-  githubUrl?: string;
-  technologies: string[];
-  image: string;
-  imageAlt: string;
-  highlights: string[];
-}
-
-export interface ExperienceItem {
-  company: string;
-  role: string;
-  period: string;
-  type: string;
-  responsibilities: string[];
-}
-
-export interface EducationItem {
-  institution: string;
-  abbreviation: string;
-  degree: string;
-  major: string;
-  graduationDate: string;
-  achievements: string[];
-}
+// All the content of the site lives here, so text changes never touch the components.
+// Rule: only real facts (checked against the project code and git history).
 
 export interface NavLink {
   label: string;
   href: string;
 }
 
+export interface PersonalInfo {
+  name: string;
+  role: string; // main title
+  goal: string; // second line under the title
+  intro: string;
+  interests: string[];
+  location: string;
+  email: string;
+  github: string;
+  githubUsername: string;
+  resumePath: string;
+  resumeFileName: string;
+  about: string[];
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  status: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  liveUrl: string;
+  githubUrl?: string; // left out when the repository is private
+  image: string;
+  imageAlt: string;
+}
+
+export interface SkillGroup {
+  name: string;
+  skills: string[];
+}
+
+export interface TimelineItem {
+  title: string;
+  place: string;
+  period: string;
+  points: string[];
+}
+
+export interface Education {
+  school: string;
+  degree: string;
+  major: string;
+  graduated: string;
+  honors: string[];
+}
+
 export const navLinks: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const personalInfo: PersonalInfo = {
   name: "Nelson E. Fernandez",
-  title: "Entry-Level Full-Stack Web Developer",
-  heroTitle: "Entry-Level Full-Stack Web Developer",
-  heroTagline:
-    "I build and ship full-stack web apps with Next.js, TypeScript, and PostgreSQL — from a Proof-of-Stake blockchain to a lending system.",
+  role: "Entry-Level Web Developer",
+  goal: "Aspiring Junior Full-Stack Developer",
+  intro:
+    "I build and deploy web applications with Next.js, TypeScript, and PostgreSQL. I'm looking for my first developer role, where I can keep learning and contribute to a team.",
+  interests: [
+    "Full-stack web apps",
+    "Authentication & security basics",
+    "Automated testing",
+    "Blockchain fundamentals",
+  ],
   location: "Bacolod City, Negros Occidental, Philippines",
   email: "nf1869personal@gmail.com",
-  phone: "09678512837",
   github: "https://github.com/nelson1869-ai",
   githubUsername: "nelson1869-ai",
   resumePath: "/files/Nelson-Fernandez-Resume.pdf",
   resumeFileName: "Nelson-Fernandez-Resume.pdf",
-  introduction: [
-    "I am a BSIT graduate majoring in Computer Technology. I have foundational knowledge of JavaScript, Python, HTML, CSS, and React. I am developing my full-stack development skills using Next.js and TypeScript through personal projects and independent learning.",
-    "I have experience using Git and GitHub, building personal web applications, and exploring AI concepts, RAG, and workflow automation with n8n.",
-    "My goal is to grow as a software developer and build practical, reliable, and user-friendly applications.",
+  about: [
+    "I'm a BS Industrial Technology graduate, major in Computer Technology, from Carlos Hilado Memorial State University. Before moving into software, I did IT support work: troubleshooting desktops and printers, assembling and repairing computers, and helping install CCTV.",
+    "I work full-time as a warehouse checker, and I use my own time to learn web development by building real projects. In 2026 I built and deployed four web apps, including a Proof-of-Stake learning blockchain and a lending system. I learn from official documentation, write tests, and improve each project in small steps.",
+    "My goal is to join a team as an entry-level or junior developer, grow into a full-stack role, and build software that is reliable and easy to use.",
   ],
 };
 
-export interface HeroStat {
-  value: string;
-  label: string;
-}
-
-// Real numbers from my projects (update when they change)
-export const heroStats: HeroStat[] = [
+// Real numbers from my projects (update when they change).
+export const stats: Stat[] = [
   { value: "4", label: "live web apps" },
-  { value: "400+", label: "automated tests" },
-  { value: "500+", label: "Git commits" },
+  { value: "400+", label: "automated tests in nel-chain" },
+  { value: "500+", label: "commits across these projects" },
 ];
 
-export const heroStack: string[] = [
-  "Next.js",
-  "TypeScript",
-  "React",
-  "PostgreSQL",
-  "Tailwind CSS",
-  "Node.js",
-];
-
-export const skills: SkillItem[] = [
-  {
-    name: "JavaScript",
-    level: "Basic",
-    category: "Frontend & Core",
-    description: "DOM manipulation, ES6+ syntax, asynchronous programming, and core web scripting.",
-  },
-  {
-    name: "TypeScript",
-    level: "Learning and applying",
-    category: "Frontend & Core",
-    description: "Static typing, interfaces, component props typing, and safer application logic.",
-  },
-  {
-    name: "HTML",
-    level: "Basic",
-    category: "Frontend & Core",
-    description: "Semantic markup, accessible document structure, and modern web forms.",
-  },
-  {
-    name: "CSS",
-    level: "Basic",
-    category: "Frontend & Core",
-    description: "Responsive layouts, Flexbox, CSS Grid, and dark/light theme styling.",
-  },
-  {
-    name: "React",
-    level: "Basic project experience",
-    category: "Frontend & Core",
-    description: "Component-based UI architecture, React hooks, state management, and interactive views.",
-  },
-  {
-    name: "Tailwind CSS",
-    level: "Project experience",
-    category: "Frontend & Core",
-    description: "Utility-first responsive design, custom design tokens, and consistent UI styling.",
-  },
-  {
-    name: "Next.js",
-    level: "Learning and applying",
-    category: "Full-Stack & Backend",
-    description: "App Router architecture, server and client components, routing, and SEO metadata.",
-  },
-  {
-    name: "Technical SEO",
-    level: "Applied on this site",
-    category: "Full-Stack & Backend",
-    description: "Next.js Metadata API, canonical URLs, sitemap.xml, robots.txt, Open Graph images, and JSON-LD structured data.",
-  },
-  {
-    name: "Supabase",
-    level: "Project experience",
-    category: "Full-Stack & Backend",
-    description: "PostgreSQL database integration, authentication flows, and backend-as-a-service APIs.",
-  },
-  {
-    name: "Python",
-    level: "Basic",
-    category: "Full-Stack & Backend",
-    description: "Foundational scripting, problem-solving, data structures, and backend basics.",
-  },
-  {
-    name: "Git and GitHub",
-    level: "Hands-on project experience",
-    category: "Tools & Emerging Tech",
-    description: "Version control, repository management, branching, and collaborative code workflows.",
-  },
-  {
-    name: "n8n",
-    level: "Basic workflow automation",
-    category: "Tools & Emerging Tech",
-    description: "Node-based task automation, webhook integration, and connecting external services.",
-  },
-  {
-    name: "AI and RAG",
-    level: "Introductory knowledge",
-    category: "Tools & Emerging Tech",
-    description: "Exploring large language models, Retrieval-Augmented Generation concepts, and AI workflows.",
-  },
-];
-
-export const projects: ProjectItem[] = [
+export const projects: Project[] = [
   {
     id: "nel-chain",
     title: "nel-chain",
-    subtitle: "Proof-of-Stake Learning Blockchain",
+    subtitle: "Proof-of-Stake learning blockchain",
+    status: "Live testnet · learning project",
     description:
-      "A blockchain built from scratch: Proof-of-Stake with VRF validator selection (no mining), a multi-node testnet, a block explorer, and a wallet app.",
-    liveUrl: "https://nel-chain.vercel.app/",
-    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Vitest"],
-    image: "/images/project-nelchain.svg",
-    imageAlt: "Preview illustration of the nel-chain blockchain explorer",
+      "A blockchain built from scratch to learn how one works: Proof-of-Stake with VRF validator selection (no mining), a multi-node test network, a block explorer, and a wallet app.",
     highlights: [
       "400+ automated tests and a written threat model",
-      "Shipped in 80+ small phases, including a planned hard fork on the live testnet",
+      "Built in 80+ small phases, including a planned hard fork on the running testnet",
     ],
+    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Vitest"],
+    liveUrl: "https://nel-chain.vercel.app/",
+    image: "/images/projects/nel-chain.webp",
+    imageAlt: "Screenshot of the nel-chain web app",
   },
   {
     id: "aetern",
     title: "AETERN",
-    subtitle: "Civic Tech & Social Platform",
-    description: "Social Network and Government Transparency Platform.",
+    subtitle: "Privacy-first social network prototype",
+    status: "Live prototype · public test",
+    description:
+      "A local-first social network where every post is signed with the user's own key and data stays on the user's devices. It has identity recovery, feeds, groups, messages, and a WebSocket relay.",
+    highlights: [
+      "Architecture decisions and known security limits are documented in the repo",
+      "End-to-end tests with Playwright",
+    ],
+    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Playwright"],
     liveUrl: "https://aetern.pages.dev/",
     githubUrl: "https://github.com/nelson1869-ai/aetern",
-    technologies: ["Web Application", "Frontend UI", "Civic Transparency", "Cloudflare Pages"],
-    image: "/images/project-aetern.svg",
-    imageAlt: "Preview illustration of AETERN Social Network and Government Transparency Platform",
-    highlights: [
-      "Community-oriented interface focused on public transparency and civic engagement",
-      "Responsive layout structured for accessible information browsing across devices",
-    ],
+    image: "/images/projects/aetern.webp",
+    imageAlt: "Screenshot of the AETERN feed and device setup screen",
   },
   {
     id: "small-lending",
     title: "Small Lending System",
-    subtitle: "Financial Management Web App",
-    description: "An admin-focused lending application built as a personal project.",
-    liveUrl: "https://small-lending.vercel.app/login",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM"],
-    image: "/images/project-lending.svg",
-    imageAlt: "Preview illustration of Small Lending System admin dashboard",
+    subtitle: "Lending management web app",
+    status: "Live · login required",
+    description:
+      "An app for tracking borrowers, loans, and payments, with separate areas for the admin and for borrowers.",
     highlights: [
-      "Authenticated admin workflow built with Next.js, PostgreSQL, and Drizzle ORM",
-      "Type-safe application structure using TypeScript for managing lending records",
+      "Google sign-in, borrower approval, and role-based access",
+      "Activity history and search; input validated with Zod",
     ],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Zod"],
+    liveUrl: "https://small-lending.vercel.app/login",
+    image: "/images/projects/small-lending.webp",
+    imageAlt: "Screenshot of the Small Lending System login page",
   },
   {
     id: "jean-shop",
     title: "Jean Shop",
-    subtitle: "Service Business Website",
+    subtitle: "Tailoring shop website with admin",
+    status: "Live · in development",
     description:
-      "A tailoring business website with a responsive frontend and service-focused interface.",
-    liveUrl: "https://jean-shop.vercel.app/",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Responsive UI"],
-    image: "/images/project-jeanshop.svg",
-    imageAlt: "Preview illustration of Jean Shop tailoring business website",
+      "A website for a tailoring shop in Bacolod City with service pages and an inquiry form, plus an owner-only admin panel.",
     highlights: [
-      "Clean, customer-friendly showcase for tailoring services and inquiries",
-      "Mobile-first responsive design deployed on Vercel",
+      "Admin tools for customers, measurements, orders, payments, and expenses",
+      "Supabase for the database and owner sign-in",
     ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    liveUrl: "https://jean-shop.vercel.app/",
+    image: "/images/projects/jean-shop.webp",
+    imageAlt: "Screenshot of the Jean Shop home page",
   },
 ];
 
-export const experiences: ExperienceItem[] = [
+// Only tools used in the projects above.
+export const skillGroups: SkillGroup[] = [
   {
-    company: "Suysing",
-    role: "Warehouse Checker",
-    period: "2020–Present",
-    type: "Full-Time Operations",
-    responsibilities: [
-      "Check and verify items during daily warehouse operations.",
+    name: "Frontend",
+    skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Technical SEO"],
+  },
+  {
+    name: "Backend",
+    skills: ["Node.js", "REST API development", "Authentication", "Zod validation", "WebSocket"],
+  },
+  {
+    name: "Database",
+    skills: ["PostgreSQL", "Supabase", "Drizzle ORM"],
+  },
+  {
+    name: "Tools & Testing",
+    skills: ["Git", "GitHub", "pnpm", "VS Code", "Vitest", "Playwright", "Vercel", "Cloudflare Pages"],
+  },
+];
+
+export const experience: TimelineItem[] = [
+  {
+    title: "Independent Web Development Projects",
+    place: "Self-directed",
+    period: "2026 – Present",
+    points: [
+      "Built and deployed the four web apps shown in Projects using Next.js, TypeScript, PostgreSQL, and Supabase.",
+      "Practiced authentication, role-based access, database design, and automated testing with Vitest and Playwright.",
+      "Managed code with Git and GitHub and deployed to Vercel and Cloudflare Pages.",
+    ],
+  },
+  {
+    title: "Warehouse Checker",
+    place: "Suysing",
+    period: "2020 – Present",
+    points: [
+      "Check and verify items against records during daily warehouse operations.",
       "Follow workplace procedures.",
       "Maintain accuracy and reliability.",
     ],
   },
   {
-    company: "Jega Bytes",
-    role: "IT Support / OJT Trainee",
-    period: "2018–2019",
-    type: "On-the-Job Training",
-    responsibilities: [
+    title: "IT Support / OJT Trainee",
+    place: "Jega Bytes, Bacolod City",
+    period: "2018 – 2019",
+    points: [
       "Desktop troubleshooting.",
       "Computer assembly and repair.",
       "Printer troubleshooting and support.",
@@ -274,11 +222,10 @@ export const experiences: ExperienceItem[] = [
   },
 ];
 
-export const education: EducationItem = {
-  institution: "Carlos Hilado Memorial State University",
-  abbreviation: "CHMSU",
+export const education: Education = {
+  school: "Carlos Hilado Memorial State University (CHMSU)",
   degree: "Bachelor of Science in Industrial Technology (BSIT)",
-  major: "Major in Computer Technology (ComTech)",
-  graduationDate: "July 6, 2020",
-  achievements: ["Dean's Lister — First Year, First Semester"],
+  major: "Major in Computer Technology",
+  graduated: "July 2020",
+  honors: ["Dean's Lister — First Year, First Semester"],
 };

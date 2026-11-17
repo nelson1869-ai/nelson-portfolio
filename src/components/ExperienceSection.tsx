@@ -1,75 +1,51 @@
-import { Briefcase, Calendar, Check } from "lucide-react";
-import { experiences } from "@/data/portfolio";
-import { SectionHeading } from "./SectionHeading";
+import { education, experience } from "@/data/portfolio";
+import { Section } from "./Section";
 
 export function ExperienceSection() {
   return (
-    <section
-      id="experience"
-      aria-labelledby="experience-heading"
-      className="border-b border-[var(--border-subtle)] py-16 sm:py-20"
-    >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div id="experience-heading">
-          <SectionHeading
-            eyebrow="04 / Work Experience"
-            title="Professional & Practical Experience"
-            description="Hands-on experience in IT technical support, hardware troubleshooting, and detail-oriented daily warehouse operations."
-          />
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {experiences.map((exp) => (
-            <div
-              key={`${exp.company}-${exp.role}`}
-              className="flex flex-col justify-between rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7"
-            >
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-subtle)] pb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent-text)]">
-                      <Briefcase className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-bold text-[var(--text-primary)]">
-                        {exp.role}
-                      </h3>
-                      <p className="text-sm font-medium text-[var(--accent-text)]">
-                        {exp.company}
-                      </p>
-                    </div>
-                  </div>
-
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-3 py-1 font-mono text-xs font-medium text-[var(--text-secondary)]">
-                    <Calendar className="h-3.5 w-3.5 text-[var(--accent-text)]" aria-hidden="true" />
-                    {exp.period}
-                  </span>
-                </div>
-
-                <ul className="mt-5 space-y-3">
-                  {exp.responsibilities.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-2.5 text-sm leading-relaxed text-[var(--text-secondary)]"
-                    >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent-text)]">
-                        <Check className="h-3 w-3" aria-hidden="true" />
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-6 border-t border-[var(--border-subtle)] pt-3">
-                <span className="font-mono text-xs text-[var(--text-muted)]">
-                  {exp.type}
-                </span>
-              </div>
+    <Section id="experience" eyebrow="Experience" title="Experience & education">
+      {/* Timeline: a line on the left with a dot for each entry */}
+      <ol className="relative space-y-10 border-l border-(--border-strong) pl-6">
+        {experience.map((item) => (
+          <li key={item.title} className="relative">
+            <span
+              className="absolute top-1.5 -left-[29px] h-2.5 w-2.5 rounded-full border-2 border-(--bg-primary) bg-(--accent-primary)"
+              aria-hidden="true"
+            />
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 className="text-base font-semibold text-(--text-primary)">
+                {item.title}
+                <span className="font-normal text-(--text-muted)"> · {item.place}</span>
+              </h3>
+              <p className="font-mono text-xs text-(--text-muted)">{item.period}</p>
             </div>
-          ))}
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-(--text-secondary) marker:text-(--border-strong)">
+              {item.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+
+      {/* Education (kept as #education so old links still work) */}
+      <div
+        id="education"
+        className="mt-12 rounded-lg border border-(--border-subtle) bg-(--bg-surface) p-5 sm:p-6"
+      >
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 className="text-base font-semibold text-(--text-primary)">{education.degree}</h3>
+          <p className="font-mono text-xs text-(--text-muted)">Graduated {education.graduated}</p>
         </div>
+        <p className="mt-1 text-sm text-(--text-secondary)">
+          {education.major} · {education.school}
+        </p>
+        <ul className="mt-3 text-sm text-(--text-muted)">
+          {education.honors.map((honor) => (
+            <li key={honor}>{honor}</li>
+          ))}
+        </ul>
       </div>
-    </section>
+    </Section>
   );
 }

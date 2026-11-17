@@ -1,11 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { personalInfo } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const siteTitle = `${personalInfo.name} | ${personalInfo.heroTitle}`;
+// next/font downloads the fonts at build time and serves them from this site
+// (no request to Google from the visitor's browser).
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
+
+const siteTitle = `${personalInfo.name} | ${personalInfo.role}`;
 const siteDescription =
-  "Nelson E. Fernandez is an entry-level full-stack web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
+  "Nelson E. Fernandez is an entry-level web developer in Bacolod City, Philippines, building and deploying web apps with Next.js, TypeScript, React, and PostgreSQL.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -50,8 +60,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#090d16" },
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0d14" },
   ],
 };
 
@@ -83,7 +93,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="dark h-full antialiased"
+      className={`dark h-full antialiased ${inter.variable} ${jetbrains.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
@@ -91,7 +101,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"
-          className="sr-only rounded-lg bg-[var(--accent-primary)] px-4 py-2.5 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 dark:text-slate-950"
+          className="sr-only rounded-lg bg-(--accent-primary) px-4 py-2.5 text-sm font-semibold text-(--on-accent) focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
         >
           Skip to main content
         </a>

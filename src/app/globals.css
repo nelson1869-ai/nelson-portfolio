@@ -1,57 +1,61 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/* Fonts come from next/font in layout.tsx (self-hosted at build time). */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* Color tokens. Light theme first, then dark. All text pairs pass WCAG AA (4.5:1). */
 :root {
   color-scheme: light;
-  --bg-primary: #f8fafc;
+  --bg-primary: #fafafa;
   --bg-surface: #ffffff;
   --bg-elevated: #f1f5f9;
   --text-primary: #0f172a;
   --text-secondary: #334155;
-  --text-muted: #64748b;
-  --border-subtle: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --accent-primary: #0284c7;
-  --accent-hover: #0369a1;
+  --text-muted: #5b6474;
+  --border-subtle: #e4e7ec;
+  --border-strong: #cbd2db;
+  --accent-primary: #0369a1; /* white text on it = 5.9:1 */
+  --accent-hover: #075985;
   --accent-soft: #e0f2fe;
   --accent-text: #0369a1;
+  --on-accent: #ffffff;
 }
 
 .dark {
   color-scheme: dark;
-  --bg-primary: #090d16;
-  --bg-surface: #111827;
-  --bg-elevated: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --border-subtle: #1e293b;
-  --border-strong: #334155;
+  --bg-primary: #0a0d14;
+  --bg-surface: #10141d;
+  --bg-elevated: #171c27;
+  --text-primary: #f1f5f9;
+  --text-secondary: #c4cbd6;
+  --text-muted: #949eae;
+  --border-subtle: #1f2633;
+  --border-strong: #2e3747;
   --accent-primary: #38bdf8;
   --accent-hover: #7dd3fc;
   --accent-soft: rgba(56, 189, 248, 0.12);
-  --accent-text: #38bdf8;
+  --accent-text: #5cc8f9;
+  --on-accent: #062033;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 5rem; /* so the sticky header does not cover section titles */
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 :focus-visible {
   outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,15 +66,15 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
+/* One small entrance animation for the hero only. */
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -79,5 +83,5 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.45s ease-out forwards;
+  animation: fade-in-up 0.4s ease-out both;
 }

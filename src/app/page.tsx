@@ -1,13 +1,12 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { AboutSection } from "@/components/AboutSection";
-import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { SkillsSection } from "@/components/SkillsSection";
+import { AboutSection } from "@/components/AboutSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
-import { EducationSection } from "@/components/EducationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
-import { education, heroStack, personalInfo } from "@/data/portfolio";
+import { education, personalInfo, skillGroups } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 
 // Structured data (JSON-LD): tells Google who this page is about.
@@ -17,7 +16,7 @@ const personJsonLd = {
   "@type": "Person",
   name: personalInfo.name,
   alternateName: "Nelson Fernandez",
-  jobTitle: personalInfo.heroTitle,
+  jobTitle: personalInfo.role,
   url: siteUrl,
   sameAs: [personalInfo.github],
   address: {
@@ -26,8 +25,8 @@ const personJsonLd = {
     addressRegion: "Negros Occidental",
     addressCountry: "PH",
   },
-  alumniOf: { "@type": "CollegeOrUniversity", name: education.institution },
-  knowsAbout: heroStack,
+  alumniOf: { "@type": "CollegeOrUniversity", name: education.school },
+  knowsAbout: skillGroups.flatMap((group) => group.skills),
 };
 
 export default function HomePage() {
@@ -43,11 +42,10 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />
-        <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
+        <SkillsSection />
+        <AboutSection />
         <ExperienceSection />
-        <EducationSection />
         <ContactSection />
       </main>
       <Footer />

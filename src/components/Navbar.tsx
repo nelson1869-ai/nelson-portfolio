@@ -1,110 +1,129 @@
 "use client";
 
-import { useState } from "react";
-import { Code2, ExternalLink, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { FileDown, Menu, X } from "lucide-react";
 import { navLinks, personalInfo } from "@/data/portfolio";
-import { GithubIcon } from "./GithubIcon";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
 
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  // Highlight the nav link of the section that is in the middle of the screen.
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveHref(`#${entry.target.id}`);
+        }
+      },
+      // A thin band across the middle of the viewport.
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  // Close the mobile menu with the Escape key.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const linkClass = (href: string) =>
+    href === activeHref
+      ? "text-(--text-primary)"
+      : "text-(--text-muted) hover:text-(--text-primary)";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a
-          href="#top"
-          className="flex items-center gap-2.5 text-base font-bold tracking-tight text-[var(--text-primary)] transition-opacity hover:opacity-90"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--accent-primary)] text-white dark:text-slate-950">
-            <Code2 className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <span>{personalInfo.name}</span>
+    <header className="sticky top-0 z-50 border-b border-(--border-subtle) bg-(--bg-primary)/85 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <a href="#top" className="font-semibold tracking-tight text-(--text-primary)">
+          {personalInfo.name}
         </a>
 
-        {/* Desktop navigation */}
-        <nav aria-label="Primary navigation" className="hidden md:flex md:items-center md:gap-1">
-          {navLinks.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
-            >
-              {item.label}
-            </a>
-          ))}
+        {/* Desktop links */}
+        <nav aria-label="Primary" className="hidden md:block">
+          <ul className="flex items-center gap-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  aria-current={link.href === activeHref ? "location" : undefined}
+                  className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${linkClass(link.href)}`}
+                >
+                  {link.label}
+                  {link.href === activeHref ? (
+                    <span
+                      className="absolute inset-x-3 -bottom-[13px] h-0.5 bg-(--accent-primary)"
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {/* Actions */}
-        <div className="hidden items-center gap-2.5 md:flex">
+        <div className="flex items-center gap-2">
           <a
-            href={personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Nelson Fernandez's GitHub profile"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-3 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
+            href={personalInfo.resumePath}
+            download={personalInfo.resumeFileName}
+            className="hidden h-9 items-center gap-1.5 rounded-md border border-(--border-strong) px-3 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated) sm:inline-flex"
           >
-            <GithubIcon className="h-4 w-4" />
-            <span>GitHub</span>
-            <ExternalLink className="h-3 w-3 opacity-70" aria-hidden="true" />
+            <FileDown className="h-4 w-4" aria-hidden="true" />
+            Resume
           </a>
-          <ThemeToggle />
-        </div>
-
-        {/* Mobile menu controls */}
-        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
             type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border-subtle) text-(--text-secondary) md:hidden"
           >
-            {mobileMenuOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            )}
+            {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile navigation drawer */}
-      {mobileMenuOpen ? (
+      {/* Mobile menu */}
+      {menuOpen ? (
         <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] px-4 pt-2 pb-4 md:hidden"
+          id="mobile-menu"
+          aria-label="Mobile"
+          className="border-t border-(--border-subtle) bg-(--bg-primary) px-4 py-3 md:hidden"
         >
-          <ul className="flex flex-col space-y-1">
-            {navLinks.map((item) => (
-              <li key={item.href}>
+          <ul className="flex flex-col">
+            {navLinks.map((link) => (
+              <li key={link.href}>
                 <a
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-3 text-base font-medium ${linkClass(link.href)}`}
                 >
-                  {item.label}
+                  {link.label}
                 </a>
               </li>
             ))}
-            <li className="pt-2">
+            <li className="mt-2 border-t border-(--border-subtle) pt-3">
               <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMobileMenu}
-                className="flex items-center justify-between rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-3 py-2.5 text-sm font-medium text-[var(--text-primary)]"
+                href={personalInfo.resumePath}
+                download={personalInfo.resumeFileName}
+                className="flex items-center gap-2 rounded-md px-3 py-3 text-base font-medium text-(--text-primary)"
               >
-                <span className="inline-flex items-center gap-2">
-                  <GithubIcon className="h-4 w-4" />
-                  <span>GitHub Profile ({personalInfo.githubUsername})</span>
-                </span>
-                <ExternalLink className="h-4 w-4 text-[var(--text-muted)]" aria-hidden="true" />
+                <FileDown className="h-4 w-4" aria-hidden="true" />
+                Download resume (PDF)
               </a>
             </li>
           </ul>
