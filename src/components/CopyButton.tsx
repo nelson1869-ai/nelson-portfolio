@@ -1,18 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
 
 // The only interactive part of the Contact section, so only this small piece
 // is a client component (the rest of the section stays server-rendered HTML).
 export function CopyButton({ value, label }: { value: string; label: string }) {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  // Clear a pending timer if the button disappears, so it never updates an unmounted component.
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(value);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      clearTimeout(timerRef.current); // a second click restarts the 2-second timer
+      timerRef.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       // Clipboard can be blocked (e.g. insecure context); the email is still visible to copy by hand.
     }

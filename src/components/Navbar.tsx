@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FileDown, Menu, X } from "lucide-react";
 import { navLinks, personalInfo } from "@/data/portfolio";
 import { ThemeToggle } from "./ThemeToggle";
@@ -8,8 +8,13 @@ import { ThemeToggle } from "./ThemeToggle";
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
 
   // Highlight the nav link of the section the reader is looking at.
+  // (An IntersectionObserver was tried first, but a short last section such as
+  // Education never reaches the middle of the screen, so it could not become
+  // active. Reading 6 positions once per animation frame is cheap.)
   useEffect(() => {
     const sections = navLinks
       .map((link) => document.querySelector<HTMLElement>(link.href))
@@ -36,23 +41,48 @@ export function Navbar() {
       setActiveHref(current);
     };
 
-    updateActive();
-    window.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("hashchange", updateActive);
+    // At most one update per frame, however fast the scroll events come.
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActive);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("hashchange", onScroll);
     return () => {
-      window.removeEventListener("scroll", updateActive);
-      window.removeEventListener("hashchange", updateActive);
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("hashchange", onScroll);
     };
   }, []);
 
-  // Close the mobile menu with the Escape key.
+  // Mobile menu keyboard support:
+  // - when it opens, focus moves to the first link
+  // - Escape closes it and puts focus back on the menu button
+  // - it closes by itself if the screen becomes wide enough for the desktop nav
   useEffect(() => {
     if (!menuOpen) return;
+    firstMenuLinkRef.current?.focus();
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onResize = () => {
+      if (desktop.matches) setMenuOpen(false);
+    };
+
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onResize);
+    };
   }, [menuOpen]);
 
   const linkClass = (href: string) =>
@@ -101,6 +131,7 @@ export function Navbar() {
           </a>
           <ThemeToggle />
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
@@ -121,10 +152,12 @@ export function Navbar() {
           className="border-t border-(--border-subtle) bg-(--bg-primary) px-4 py-3 lg:hidden"
         >
           <ul className="flex flex-col">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <li key={link.href}>
                 <a
+                  ref={index === 0 ? firstMenuLinkRef : undefined}
                   href={link.href}
+                  aria-current={link.href === activeHref ? "location" : undefined}
                   onClick={() => setMenuOpen(false)}
                   className={`block rounded-md px-3 py-3 text-base font-medium ${linkClass(link.href)}`}
                 >

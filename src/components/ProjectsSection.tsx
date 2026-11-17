@@ -16,18 +16,26 @@ export function ProjectsSection() {
         {projects.map((project, index) => (
           <li key={project.id}>
             <article className="flex h-full flex-col overflow-hidden rounded-lg border border-(--border-subtle) bg-(--bg-surface) transition-colors hover:border-(--border-strong)">
-              {/* Real screenshot of the live site */}
-              <div className="relative aspect-[16/10] border-b border-(--border-subtle) bg-(--bg-elevated)">
+              {/* Real screenshot of the live site. Clicking it opens the demo; it is
+                  skipped by Tab (tabIndex -1) because the "Live demo" link below does the same. */}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={-1}
+                aria-hidden="true"
+                className="group relative block aspect-[16/10] overflow-hidden border-b border-(--border-subtle) bg-(--bg-elevated)"
+              >
                 <Image
                   src={project.image}
-                  alt={project.imageAlt}
+                  alt=""
                   fill
                   sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover object-top"
+                  className="object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.02] motion-reduce:transition-none"
                   // Load the first two eagerly (they are near the top of the page).
                   loading={index < 2 ? "eager" : "lazy"}
                 />
-              </div>
+              </a>
 
               <div className="flex flex-1 flex-col p-5">
                 <p className="font-mono text-xs text-(--text-muted)">{project.status}</p>

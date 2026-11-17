@@ -13,26 +13,39 @@ export function Hero() {
             Open to entry-level &amp; junior roles · Bacolod City, PH
           </p>
 
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-(--text-primary) sm:text-6xl">
+          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-balance text-(--text-primary) sm:text-6xl">
             {personalInfo.name}
           </h1>
-          <p className="mt-4 text-lg font-medium text-(--text-primary) sm:text-xl">
-            {personalInfo.role}
-            <span className="text-(--text-muted)"> | {personalInfo.goal}</span>
+          {/* whitespace-nowrap keeps each part on one line on small phones */}
+          <p className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-lg font-medium sm:text-xl">
+            <span className="whitespace-nowrap text-(--text-primary)">{personalInfo.role}</span>
+            <span className="hidden text-(--border-strong) sm:inline" aria-hidden="true">
+              |
+            </span>
+            <span className="whitespace-nowrap text-(--accent-text)">{personalInfo.goal}</span>
           </p>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-(--text-secondary) sm:text-lg">
             {personalInfo.intro}
           </p>
 
-          <p className="mt-5 text-sm text-(--text-muted)">
-            <span className="font-medium text-(--text-secondary)">Interested in: </span>
-            {personalInfo.interests.join(" · ")}
-          </p>
+          <div className="mt-5 text-sm">
+            <p className="font-medium text-(--text-secondary)">Interested in</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {personalInfo.interests.map((interest) => (
+                <li
+                  key={interest}
+                  className="rounded-full border border-(--border-subtle) px-3 py-1 whitespace-nowrap text-(--text-muted)"
+                >
+                  {interest}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#projects"
-              className="inline-flex h-11 items-center gap-2 rounded-md bg-(--accent-primary) px-5 text-sm font-semibold text-(--on-accent) transition-colors hover:bg-(--accent-hover)"
+              className="inline-flex h-11 flex-1 items-center justify-center gap-2 sm:flex-none rounded-md bg-(--accent-primary) px-5 text-sm font-semibold text-(--on-accent) transition-colors hover:bg-(--accent-hover)"
             >
               View projects
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -40,7 +53,7 @@ export function Hero() {
             <a
               href={personalInfo.resumePath}
               download={personalInfo.resumeFileName}
-              className="inline-flex h-11 items-center gap-2 rounded-md border border-(--border-strong) px-5 text-sm font-semibold text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
+              className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-md border border-(--border-strong) px-5 whitespace-nowrap sm:flex-none text-sm font-semibold text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
             >
               <FileDown className="h-4 w-4" aria-hidden="true" />
               Download resume

@@ -40,7 +40,6 @@ export interface Project {
   liveUrl: string;
   githubUrl?: string; // left out when the repository is private
   image: string;
-  imageAlt: string;
 }
 
 // Honest proficiency levels (shown with a legend on the page).
@@ -70,6 +69,9 @@ export interface Education {
   graduated: string;
   honors: string[];
 }
+
+// Date the site content last changed (used by sitemap.xml). Update it with real edits.
+export const contentUpdated = "2026-11-17";
 
 export const navLinks: NavLink[] = [
   { label: "Projects", href: "#projects" },
@@ -134,7 +136,6 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Vitest"],
     liveUrl: "https://nel-chain.vercel.app/",
     image: "/images/projects/nel-chain.webp",
-    imageAlt: "Screenshot of the nel-chain web app",
   },
   {
     id: "aetern",
@@ -145,18 +146,17 @@ export const projects: Project[] = [
       "A local-first social network experiment: each post is signed with the user's own key and data is kept on the user's device. It has identity recovery, a feed, groups, and messages.",
     highlights: [
       "Architecture decisions and known security limits are documented in the repo",
-      "End-to-end tests with Playwright",
+      "Unit tests with Node's built-in test runner and end-to-end tests with Playwright",
     ],
     howItsBuilt: [
-      "The app is a static Next.js export hosted on Cloudflare Pages; devices connect to a self-hosted Node.js WebSocket relay.",
+      "The app is a static Next.js export on Cloudflare Pages. Posts are stored in the browser (IndexedDB) and synced through Node.js WebSocket relays; the public test uses one self-hosted relay.",
       "Identity is a key pair restored from a 24-word recovery phrase (BIP39), so there is no password or server account.",
       "The README states plainly that the prototype is not yet decentralized, private, or secure.",
     ],
-    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "Playwright"],
+    technologies: ["Next.js", "TypeScript", "Node.js", "WebSocket", "IndexedDB", "Playwright"],
     liveUrl: "https://aetern.pages.dev/",
     githubUrl: "https://github.com/nelson1869-ai/aetern",
     image: "/images/projects/aetern.webp",
-    imageAlt: "Screenshot of the AETERN feed and device setup screen",
   },
   {
     id: "small-lending",
@@ -178,7 +178,6 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Zod"],
     liveUrl: "https://small-lending.vercel.app/login",
     image: "/images/projects/small-lending.webp",
-    imageAlt: "Screenshot of the Small Lending System login page",
   },
   {
     id: "jean-shop",
@@ -199,7 +198,6 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://jean-shop.vercel.app/",
     image: "/images/projects/jean-shop.webp",
-    imageAlt: "Screenshot of the Jean Shop home page",
   },
 ];
 

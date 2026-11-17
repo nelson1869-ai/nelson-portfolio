@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { contentUpdated } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 
 // Build this file once at build time (needed for the static export).
@@ -9,7 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteUrl,
-      lastModified: new Date(),
+      // A fixed date: new Date() would claim a change on every build.
+      lastModified: contentUpdated,
       changeFrequency: "monthly",
       priority: 1,
     },
