@@ -90,13 +90,23 @@ body {
   animation: fade-in-up 0.4s ease-out both;
 }
 
-/* Section content fades in while it enters the screen. Pure CSS scroll-driven
-   animation: no JavaScript, skipped in browsers without support and for
-   people who prefer reduced motion (content is simply visible). */
+/* Section content slides up slightly while it enters the screen. Pure CSS
+   scroll-driven animation: no JavaScript, skipped in browsers without support
+   and for people who prefer reduced motion. Only movement, never opacity,
+   so text always keeps its full color contrast. */
+@keyframes slide-up {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
-      animation: fade-in-up linear both;
+      animation: slide-up linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 35%;
     }
