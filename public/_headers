@@ -1,0 +1,4 @@
+# Cloudflare Pages headers. The OG image file has no extension,
+# so tell browsers and link previews it is a PNG.
+/opengraph-image
+  Content-Type: image/png
