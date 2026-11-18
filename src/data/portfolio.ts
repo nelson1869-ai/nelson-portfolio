@@ -270,7 +270,7 @@ export const experience: TimelineItem[] = [
   {
     title: "Warehouse Checker",
     place: "Suysing",
-    period: "2020 – Present",
+    period: "2021 – Present",
     points: [
       "Check and verify items against records during daily warehouse operations.",
       "Follow workplace procedures.",
