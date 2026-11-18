@@ -2,6 +2,7 @@ import { ArrowUpRight, FileDown, Mail, Phone } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import { CopyButton } from "./CopyButton";
 import { GithubIcon } from "./GithubIcon";
+import { LinkedinIcon } from "./LinkedinIcon";
 import { Section } from "./Section";
 
 export function ContactSection() {
@@ -38,7 +39,7 @@ export function ContactSection() {
         </a>
       </div>
 
-      <ul className="mt-10 grid gap-6 border-t border-(--border-subtle) pt-6 text-sm sm:grid-cols-3">
+      <ul className="mt-10 grid gap-6 border-t border-(--border-subtle) pt-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
         <li>
           <p className="font-mono text-xs text-(--text-muted) uppercase">GitHub</p>
           <a
@@ -49,6 +50,20 @@ export function ContactSection() {
           >
             <GithubIcon className="h-4 w-4" />
             github.com/{personalInfo.githubUsername}
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </li>
+        <li>
+          <p className="font-mono text-xs text-(--text-muted) uppercase">LinkedIn</p>
+          <a
+            href={personalInfo.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-flex items-center gap-1.5 py-1 text-(--text-primary) hover:underline"
+          >
+            <LinkedinIcon className="h-4 w-4" />
+            in/nelson-e-fernandez
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="sr-only">(opens in a new tab)</span>
           </a>

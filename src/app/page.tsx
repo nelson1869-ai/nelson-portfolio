@@ -20,7 +20,7 @@ const personJsonLd = {
   alternateName: "Nelson Fernandez",
   jobTitle: personalInfo.role,
   url: siteUrl,
-  sameAs: [personalInfo.github],
+  sameAs: [personalInfo.github, personalInfo.linkedin],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bacolod City",

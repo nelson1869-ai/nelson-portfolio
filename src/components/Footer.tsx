@@ -2,6 +2,7 @@ import { personalInfo } from "@/data/portfolio";
 
 const footerLinks = [
   { label: "GitHub", href: personalInfo.github, external: true },
+  { label: "LinkedIn", href: personalInfo.linkedin, external: true },
   { label: "Email", href: `mailto:${personalInfo.email}`, external: false },
   { label: "Resume", href: personalInfo.resumePath, external: false },
   { label: "Back to top ↑", href: "#top", external: false },

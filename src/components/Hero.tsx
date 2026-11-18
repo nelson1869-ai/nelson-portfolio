@@ -1,6 +1,7 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { personalInfo, stats } from "@/data/portfolio";
 import { GithubIcon } from "./GithubIcon";
+import { LinkedinIcon } from "./LinkedinIcon";
 
 // Split "Nelson E. Fernandez" into "Nelson E." and "Fernandez" for the two-line name.
 const lastSpace = personalInfo.name.lastIndexOf(" ");
@@ -67,6 +68,15 @@ export function Hero() {
                 className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--border-subtle) text-(--text-secondary) transition-colors hover:text-(--text-primary)"
               >
                 <GithubIcon className="h-5 w-5" />
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile (opens in a new tab)"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--border-subtle) text-(--text-secondary) transition-colors hover:text-(--text-primary)"
+              >
+                <LinkedinIcon className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}

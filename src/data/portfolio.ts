@@ -18,6 +18,7 @@ export interface PersonalInfo {
   telHref: string;
   github: string;
   githubUsername: string;
+  linkedin: string;
   resumePath: string;
   resumeFileName: string;
   about: string[];
@@ -104,6 +105,7 @@ export const personalInfo: PersonalInfo = {
   telHref: "tel:+639678512837",
   github: "https://github.com/nelson1869-ai",
   githubUsername: "nelson1869-ai",
+  linkedin: "https://www.linkedin.com/in/nelson-e-fernandez",
   resumePath: "/files/Nelson-Fernandez-Resume.pdf",
   resumeFileName: "Nelson-Fernandez-Resume.pdf",
   about: [
