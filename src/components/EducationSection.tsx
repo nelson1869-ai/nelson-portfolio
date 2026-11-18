@@ -11,6 +11,18 @@ export function EducationSection() {
           <h3 className="mt-2 text-lg font-semibold text-(--text-primary)">{education.degree}</h3>
           <p className="mt-1 text-sm text-(--text-secondary)">{education.major}</p>
           <p className="mt-1 text-sm text-(--text-secondary)">{education.school}</p>
+
+          <h4 className="mt-6 text-sm font-semibold text-(--text-primary)">Relevant coursework</h4>
+          <ul className="mt-2 flex flex-wrap gap-2">
+            {education.coursework.map((course) => (
+              <li
+                key={course}
+                className="rounded-md border border-(--border-subtle) px-2.5 py-1 text-sm text-(--text-secondary)"
+              >
+                {course}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <ul className="space-y-3 md:col-span-2">

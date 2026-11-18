@@ -68,6 +68,7 @@ export interface Education {
   major: string;
   graduated: string;
   honors: string[];
+  coursework: string[]; // from the Transcript of Records
 }
 
 // Date the site content last changed (used by sitemap.xml). Update it with real edits.
@@ -286,6 +287,7 @@ export const experience: TimelineItem[] = [
       "Computer assembly and repair.",
       "Printer troubleshooting and support.",
       "CCTV installation assistance.",
+      "Completed OJT 1 and OJT 2 with final ratings of 90 (Superior) and 95 (Excellent).",
     ],
   },
 ];
@@ -296,4 +298,11 @@ export const education: Education = {
   major: "Major in Computer Technology",
   graduated: "July 2020",
   honors: ["Dean's Lister — First Year, First Semester"],
+  coursework: [
+    "PC Troubleshooting, Maintenance and Repair I & II",
+    "Computer Networking",
+    "Computer Programming",
+    "Digital Electronics",
+    "Computer Literacy and Operations",
+  ],
 };
