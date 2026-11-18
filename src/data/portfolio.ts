@@ -71,7 +71,7 @@ export interface Education {
 }
 
 // Date the site content last changed (used by sitemap.xml). Update it with real edits.
-export const contentUpdated = "2026-11-17";
+export const contentUpdated = "2026-11-18";
 
 export const navLinks: NavLink[] = [
   { label: "Projects", href: "#projects" },
@@ -280,7 +280,7 @@ export const experience: TimelineItem[] = [
   {
     title: "IT Support / OJT Trainee",
     place: "Jega Bytes, Bacolod City",
-    period: "2018 – 2019",
+    period: "2019 – 2020",
     points: [
       "Desktop troubleshooting.",
       "Computer assembly and repair.",
