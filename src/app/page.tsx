@@ -7,6 +7,7 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import { EducationSection } from "@/components/EducationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { FloatingResume } from "@/components/FloatingResume";
 import { education, personalInfo, skillGroups } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 
@@ -51,6 +52,7 @@ export default function HomePage() {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingResume />
     </>
   );
 }

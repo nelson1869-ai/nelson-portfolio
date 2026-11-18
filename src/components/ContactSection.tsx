@@ -22,7 +22,7 @@ export function ContactSection() {
       <div className="mt-6 flex flex-wrap gap-3">
         <a
           href={`mailto:${personalInfo.email}`}
-          className="inline-flex h-11 items-center gap-2 rounded-md bg-(--accent-primary) px-5 text-sm font-semibold text-(--on-accent) transition-colors hover:bg-(--accent-hover)"
+          className="inline-flex h-11 items-center gap-2 rounded-full bg-(--accent-primary) px-5 text-sm font-semibold text-(--on-accent) transition-colors hover:bg-(--accent-hover)"
         >
           <Mail className="h-4 w-4" aria-hidden="true" />
           Send an email
@@ -31,7 +31,7 @@ export function ContactSection() {
         <a
           href={personalInfo.resumePath}
           download={personalInfo.resumeFileName}
-          className="inline-flex h-11 items-center gap-2 rounded-md border border-(--border-strong) px-4 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
+          className="inline-flex h-11 items-center gap-2 rounded-full border border-(--border-strong) px-4 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
         >
           <FileDown className="h-4 w-4" aria-hidden="true" />
           Resume (PDF)

@@ -121,14 +121,6 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={personalInfo.resumePath}
-            download={personalInfo.resumeFileName}
-            className="hidden h-9 items-center gap-1.5 rounded-md border border-(--border-strong) px-3 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated) sm:inline-flex"
-          >
-            <FileDown className="h-4 w-4" aria-hidden="true" />
-            Resume
-          </a>
           <ThemeToggle />
           <button
             ref={menuButtonRef}
@@ -137,7 +129,7 @@ export function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border-subtle) text-(--text-secondary) lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--border-subtle) text-(--text-secondary) lg:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>

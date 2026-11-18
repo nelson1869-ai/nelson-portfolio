@@ -33,7 +33,7 @@ export function ThemeToggle() {
       aria-label="Dark theme"
       aria-pressed={isDark}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-(--border-subtle) text-(--text-secondary) transition-colors hover:border-(--border-strong) hover:text-(--text-primary)"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--border-subtle) text-(--text-secondary) transition-colors hover:border-(--border-strong) hover:text-(--text-primary)"
     >
       {/* Icons are picked with CSS (dark:), so the first paint is always right. */}
       <Sun className="hidden h-4 w-4 text-amber-400 dark:block" aria-hidden="true" />

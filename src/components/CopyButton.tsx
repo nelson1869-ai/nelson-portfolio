@@ -27,7 +27,7 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex h-11 items-center gap-2 rounded-md border border-(--border-strong) px-4 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
+      className="inline-flex h-11 items-center gap-2 rounded-full border border-(--border-strong) px-4 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--bg-elevated)"
     >
       {copied ? (
         <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { personalInfo } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -7,6 +7,13 @@ import "./globals.css";
 // next/font downloads the fonts at build time and serves them from this site
 // (no request to Google from the visitor's browser).
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+// Serif display font, used only for the big name in the hero.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["600"],
+  variable: "--font-fraunces",
+});
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
@@ -93,7 +100,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark h-full antialiased ${inter.variable} ${jetbrains.variable}`}
+      className={`dark h-full antialiased ${inter.variable} ${jetbrains.variable} ${fraunces.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

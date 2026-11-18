@@ -8,6 +8,7 @@
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 /* Color tokens. Light theme first, then dark. All text pairs pass WCAG AA (4.5:1). */
