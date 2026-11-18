@@ -67,6 +67,9 @@ export interface Education {
   degree: string;
   major: string;
   graduated: string;
+  attended: string;
+  campus: string;
+  formerName: string; // the name printed on the diploma and transcript
   honors: string[];
   coursework: string[]; // from the Transcript of Records
 }
@@ -296,7 +299,10 @@ export const education: Education = {
   school: "Carlos Hilado Memorial State University (CHMSU)",
   degree: "Bachelor of Science in Industrial Technology (BSIT)",
   major: "Major in Computer Technology",
-  graduated: "July 2020",
+  graduated: "July 6, 2020",
+  attended: "June 2016 – July 2020",
+  campus: "Alijis Campus, Bacolod City",
+  formerName: "Carlos Hilado Memorial State College",
   honors: ["Dean's Lister — First Year, First Semester"],
   coursework: [
     "PC Troubleshooting, Maintenance and Repair I & II",
@@ -304,5 +310,7 @@ export const education: Education = {
     "Computer Programming",
     "Digital Electronics",
     "Computer Literacy and Operations",
+    "Technical Writing and Reporting",
+    "Feasibility / Project Study (research)",
   ],
 };

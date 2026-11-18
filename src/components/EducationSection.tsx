@@ -10,7 +10,12 @@ export function EducationSection() {
           <p className="font-mono text-xs text-(--text-muted)">Graduated {education.graduated}</p>
           <h3 className="mt-2 text-lg font-semibold text-(--text-primary)">{education.degree}</h3>
           <p className="mt-1 text-sm text-(--text-secondary)">{education.major}</p>
-          <p className="mt-1 text-sm text-(--text-secondary)">{education.school}</p>
+          <p className="mt-1 text-sm text-(--text-secondary)">
+            {education.school}, {education.campus}
+          </p>
+          <p className="mt-1 text-sm text-(--text-muted)">
+            {education.attended} · formerly {education.formerName}
+          </p>
 
           <h4 className="mt-6 text-sm font-semibold text-(--text-primary)">Relevant coursework</h4>
           <ul className="mt-2 flex flex-wrap gap-2">
