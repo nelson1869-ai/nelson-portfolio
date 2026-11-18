@@ -8,10 +8,11 @@ export function FloatingResume() {
     <a
       href={personalInfo.resumePath}
       download={personalInfo.resumeFileName}
-      className="fixed bottom-4 left-4 z-40 inline-flex h-11 items-center gap-2 rounded-full border border-(--border-strong) bg-(--bg-surface)/90 px-4 text-sm font-semibold text-(--text-primary) shadow-lg backdrop-blur transition-colors hover:border-(--accent-primary) hover:text-(--accent-text) print:hidden"
+      className="fixed bottom-4 left-4 z-40 inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full border border-(--border-strong) bg-(--bg-surface)/90 text-sm sm:w-auto sm:px-4 font-semibold text-(--text-primary) shadow-lg backdrop-blur transition-colors hover:border-(--accent-primary) hover:text-(--accent-text) print:hidden"
     >
       <FileDown className="h-4 w-4" aria-hidden="true" />
-      Resume / CV
+      {/* On phones only the icon shows (less covering the page); the text stays for screen readers */}
+      <span className="sr-only sm:not-sr-only">Resume / CV</span>
     </a>
   );
 }
