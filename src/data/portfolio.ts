@@ -183,7 +183,7 @@ export const projects: Project[] = [
     ],
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Zod"],
     liveUrl: "https://small-lending.vercel.app/login",
-    image: "/images/projects/small-lending.webp",
+    image: "/images/projects/small-lending-dashboard.webp",
   },
   {
     id: "jean-shop",
