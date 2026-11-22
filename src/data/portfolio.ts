@@ -76,7 +76,7 @@ export interface Education {
 }
 
 // Date the site content last changed (used by sitemap.xml). Update it with real edits.
-export const contentUpdated = "2026-11-18";
+export const contentUpdated = "2026-11-22";
 
 export const navLinks: NavLink[] = [
   { label: "Projects", href: "#projects" },
@@ -110,14 +110,14 @@ export const personalInfo: PersonalInfo = {
   resumeFileName: "Nelson-Fernandez-Resume.pdf",
   about: [
     "I'm a BS Industrial Technology graduate, major in Computer Technology, from Carlos Hilado Memorial State University. My first hands-on IT work was an OJT in IT support: troubleshooting desktops and printers, assembling and repairing computers, and helping install CCTV.",
-    "I work full-time as a warehouse checker, and I use my own time to learn web development by building real projects. In 2026 I built and deployed four web apps, including a Proof-of-Stake learning blockchain and a lending system. I learn from official documentation, write tests, and improve each project in small steps.",
+    "I work full-time as a warehouse checker, and I use my own time to learn web development by building real projects. In 2026 I built and deployed five web apps, including a Proof-of-Stake learning blockchain and a lending system. I learn from official documentation, write tests, and improve each project in small steps.",
     "My goal is to join a team as an entry-level or junior developer, grow into a full-stack role, and build software that is reliable and easy to use.",
   ],
 };
 
 // Real numbers from my projects (update when they change).
 export const stats: Stat[] = [
-  { value: "4", label: "live web apps" },
+  { value: "5", label: "live web apps" },
   { value: "400+", label: "automated tests in nel-chain" },
   { value: "500+", label: "commits across these projects" },
 ];
@@ -205,6 +205,27 @@ export const projects: Project[] = [
     liveUrl: "https://jean-shop.vercel.app/",
     image: "/images/projects/jean-shop.webp",
   },
+  {
+    id: "job-tracker",
+    title: "Job Tracker",
+    subtitle: "Personal job application tracker",
+    status: "Live · personal tool, data stays in your browser",
+    description:
+      "A small app I built for my own job search: save each application with its link, status, dates, and notes, see what needs a follow-up today, and back everything up as a file.",
+    highlights: [
+      "Paste a job-post link and 'Found on' fills itself (LinkedIn, Indeed, JobStreet, Kalibrr, OnlineJobs.ph)",
+      "19 unit tests with Vitest; a /learn page explains how it is built",
+    ],
+    howItsBuilt: [
+      "A static Next.js export on Cloudflare Pages: no server and no account; applications are saved in localStorage and read with React's useSyncExternalStore.",
+      "Filtering, search, and due follow-ups are pure functions calculated on every render, which makes them easy to test.",
+      "Export/import uses a JSON file; every field in an imported file is checked and cleaned before it is saved.",
+    ],
+    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Vitest"],
+    liveUrl: "https://job-tracker-2ke.pages.dev/",
+    githubUrl: "https://github.com/nelson1869-ai/job-tracker",
+    image: "/images/projects/job-tracker.webp",
+  },
 ];
 
 // Levels: "Project experience" = used in a shipped project; "Learning & applying" =
@@ -268,7 +289,7 @@ export const experience: TimelineItem[] = [
     place: "Self-directed",
     period: "2026 – Present",
     points: [
-      "Built and deployed the four web apps shown in Projects using Next.js, TypeScript, PostgreSQL, and Supabase.",
+      "Built and deployed the five web apps shown in Projects using Next.js, TypeScript, PostgreSQL, and Supabase.",
       "Practiced authentication, role-based access, database design, and automated testing with Vitest and Playwright.",
       "Managed code with Git and GitHub and deployed to Vercel and Cloudflare Pages.",
     ],

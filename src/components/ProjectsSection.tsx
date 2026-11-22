@@ -10,7 +10,7 @@ export function ProjectsSection() {
       id="projects"
       eyebrow="Projects"
       title="Featured work"
-      description="Four apps I built and deployed. Each one is live; some need a login."
+      description="Five apps I built and deployed. Each one is live; some need a login."
     >
       <ul className="grid gap-6 sm:grid-cols-2">
         {projects.map((project, index) => (
