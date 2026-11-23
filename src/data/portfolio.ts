@@ -223,7 +223,7 @@ export const projects: Project[] = [
       "Stored and imported data both pass through one validation function; JSON backups keep working across format versions.",
     ],
     technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Vitest"],
-    liveUrl: "https://job-tracker-2ke.pages.dev/",
+    liveUrl: "https://jobs.nelson1869.com/",
     githubUrl: "https://github.com/nelson1869-ai/job-tracker",
     image: "/images/projects/job-tracker-dashboard.webp",
   },
