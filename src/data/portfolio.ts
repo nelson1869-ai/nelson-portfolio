@@ -211,20 +211,21 @@ export const projects: Project[] = [
     subtitle: "Personal job application tracker",
     status: "Live · personal tool, data stays in your browser",
     description:
-      "A small app I built for my own job search: save each application with its link, status, dates, and notes, see what needs a follow-up today, and back everything up as a file.",
+      "A dashboard I built for my own job search: track each application with its status, dates, salary, recruiter, and next step; see what needs a follow-up; and move jobs through a Kanban board.",
     highlights: [
       "Paste a job-post link and 'Found on' fills itself (LinkedIn, Indeed, JobStreet, Kalibrr, OnlineJobs.ph)",
-      "19 unit tests with Vitest; a /learn page explains how it is built",
+      "41 unit tests with Vitest; browser-tested from 360px to 1440px in light and dark mode",
     ],
     howItsBuilt: [
       "A static Next.js export on Cloudflare Pages: no server and no account; applications are saved in localStorage and read with React's useSyncExternalStore.",
-      "Filtering, search, and due follow-ups are pure functions calculated on every render, which makes them easy to test.",
-      "Export/import uses a JSON file; every field in an imported file is checked and cleaned before it is saved.",
+      "Dashboard numbers, sorting, filtering, and reminders are pure functions calculated on every render, which makes them easy to test.",
+      "Modals use the native <dialog> element (focus kept inside, Escape to close); deleting shows an Undo toast.",
+      "Stored and imported data both pass through one validation function; JSON backups keep working across format versions.",
     ],
     technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Vitest"],
     liveUrl: "https://job-tracker-2ke.pages.dev/",
     githubUrl: "https://github.com/nelson1869-ai/job-tracker",
-    image: "/images/projects/job-tracker.webp",
+    image: "/images/projects/job-tracker-dashboard.webp",
   },
 ];
 
